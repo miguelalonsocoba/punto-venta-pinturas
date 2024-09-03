@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Sucursal</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Tienda de pinturas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/punto_venta/subsidiary/home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/punto_venta/subsidiary/subsidiaries}">Sucural</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">
+            Sucursal
+        </h1>
+        <!--<div th:object="${subsidiary}" th:remove="tag">
+            <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+            </ul>
+        </div> -->
+        <form th:action="@{/punto_venta/subsidiary/subsidiary_form_create}" th:object="${subsidiary}" method="post">
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label class="col-sm-4 col-form-label">
+                        Nombre
+                        <input type="text" th:field="*{name}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    </label>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                </div>
+                <div class="col-sm-12">
+                    <label class="col-sm-4 col-form-label">
+                        Dirección
+                        <input type="text" th:field="*{address}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    </label>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></small>
+                </div>
+                <div class="col-sm-12">
+                    <label class="col-sm-4 col-form-label">
+                        Telefono
+                        <input type="text" th:field="*{phone}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    </label>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
+                </div>
+                <div class="col-sm-12">
+                    <label class="col-sm-4 col-form-label">
+                        Fecha Creación
+                        <input type="date" th:field="*{dateOfCreation}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                    </label>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('dateOfCreation')}" th:errors="*{dateOfCreation}"></small>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Crear Sucursal" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

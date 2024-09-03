@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sucursales</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Tienda de pinturas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/punto_venta/subsidiary/home}">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">Sucursales existentes</h1>
+        <p>
+            <a th:href="@{/punto_venta/subsidiary/form}" class="btn btn-success btn-xs">Nueva Sucursal</a>
+        </p>
+        <table class="table table-striped">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Número</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
+                    <th>Fecha Creación</th>
+                    <th><a class="btn btn-danger btn-xs float-right mx-2" th:href="@{/view(format=pdf)}">PDF</a></th>
+                    <th><a class="btn btn-success btn-xs float-right" th:href="@{/view(format=xlsx)}">XLS</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="subsidiary: ${subsidiaries}">
+                    <td th:text="${subsidiary.getId()}"></td>
+                    <td th:text="${subsidiary.getName()}"></td>
+                    <td th:text="${subsidiary.getAddress()}"></td>
+                    <td th:text="${subsidiary.getPhone()}"></td>
+                    <td th:text="${subsidiary.getDateOfCreation()}"></td>
+                    <td>
+                        <a class="btn btn-primary btn-xs" th:href="@{/punto_venta/subsidiary/form_subsidiary/} + ${subsidiary.id}" th:text="Modificar"></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-xs" th:href="@{/punto_venta/subsidiary/delete/} + ${subsidiary.getId()}" th:text="Eliminar" onclick="return confirm('Are you sure you want to delete?');"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

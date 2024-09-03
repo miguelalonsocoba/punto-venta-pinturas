@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sucursal Matriz</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Tienda de pinturas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link">Inventario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Ventas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Personal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Facturación</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/punto_venta/subsidiary/subsidiaries}">Sucursales</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>
