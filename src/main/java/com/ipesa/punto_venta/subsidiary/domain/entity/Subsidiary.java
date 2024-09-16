@@ -1,4 +1,4 @@
-package com.ipesa.punto_venta.subsidiary.domain.entities;
+package com.ipesa.punto_venta.subsidiary.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -11,6 +11,7 @@ public class Subsidiary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "nombre", length = 20, nullable = false)

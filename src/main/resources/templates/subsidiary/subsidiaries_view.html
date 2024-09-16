@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Sucursales</title>
@@ -22,13 +22,14 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
-        <h1 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">Sucursales existentes</h1>
-        <p>
-            <a th:href="@{/punto_venta/subsidiary/form}" class="btn btn-success btn-xs">Nueva Sucursal</a>
-        </p>
-        <table class="table table-striped">
-            <thead class="bg-primary">
+    <main role="main">
+        <div class="container">
+            <h1 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">Sucursales existentes</h1>
+            <p>
+                <a th:href="@{/punto_venta/subsidiary/form}" class="btn btn-success btn-xs">Nueva Sucursal</a>
+            </p>
+            <table class="table table-striped">
+                <thead class="bg-primary">
                 <tr>
                     <th>Número</th>
                     <th>Nombre</th>
@@ -38,8 +39,8 @@
                     <th><a class="btn btn-danger btn-xs float-right mx-2" th:href="@{/view(format=pdf)}">PDF</a></th>
                     <th><a class="btn btn-success btn-xs float-right" th:href="@{/view(format=xlsx)}">XLS</a></th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr th:each="subsidiary: ${subsidiaries}">
                     <td th:text="${subsidiary.getId()}"></td>
                     <td th:text="${subsidiary.getName()}"></td>
@@ -50,11 +51,13 @@
                         <a class="btn btn-primary btn-xs" th:href="@{/punto_venta/subsidiary/form_subsidiary/} + ${subsidiary.id}" th:text="Modificar"></a>
                     </td>
                     <td>
-                        <a class="btn btn-danger btn-xs" th:href="@{/punto_venta/subsidiary/delete/} + ${subsidiary.getId()}" th:text="Eliminar" onclick="return confirm('Are you sure you want to delete?');"></a>
+                        <a class="btn btn-danger btn-xs" th:href="@{/punto_venta/subsidiary/delete/} + ${subsidiary.getId()}" th:text="Eliminar" onclick="return confirm('Confirmar para eliminar sucursal..');"></a>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer th:insert="~{fragments/footer :: footer}" class="footer"></footer>
 </body>
 </html>

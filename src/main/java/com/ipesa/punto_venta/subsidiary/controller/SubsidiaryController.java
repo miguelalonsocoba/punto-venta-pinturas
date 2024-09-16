@@ -1,7 +1,7 @@
-package com.ipesa.punto_venta.subsidiary.controllers;
+package com.ipesa.punto_venta.subsidiary.controller;
 
-import com.ipesa.punto_venta.subsidiary.domain.entities.Subsidiary;
-import com.ipesa.punto_venta.subsidiary.services.SubsidiaryService;
+import com.ipesa.punto_venta.subsidiary.domain.entity.Subsidiary;
+import com.ipesa.punto_venta.subsidiary.service.ISubsidiaryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,33 +17,34 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/punto_venta/subsidiary")
-@SessionAttributes("subsidiary")
+@SessionAttributes(value = "subsidiary")
 public class SubsidiaryController {
 
-    SubsidiaryService subsidiaryService;
+    private ISubsidiaryService subsidiaryService;
 
     @Autowired
-    public SubsidiaryController(SubsidiaryService subsidiaryService) {
+    public SubsidiaryController(ISubsidiaryService subsidiaryService) {
         this.subsidiaryService = subsidiaryService;
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home() {
-        return "home_view";
+        return "subsidiary/home_view";
     }
 
     @RequestMapping(value = "/subsidiaries", method = RequestMethod.GET)
     public String viewSubsidiaries(Model model){
         model.addAttribute("subsidiaries", subsidiaryService.findAll());
-        return "subsidiaries_view";
+        return "subsidiary/subsidiaries_view";
     }
 
     @RequestMapping(value = "/form")
     public String create(Map<String, Object> model) {
         Subsidiary subsidiary = new Subsidiary();
         model.put("subsidiary", subsidiary);
-        return "subsidiary_form_view";
+        return "subsidiary/subsidiary_form_view";
     }
+
 
     @RequestMapping(value = "/form_subsidiary/{id}")
     public String update(@PathVariable(value = "id") Integer id, Map<String, Object> model){
@@ -54,13 +55,13 @@ public class SubsidiaryController {
             return "redirect:/punto_venta/subsidiary/subsidiaries";
         }
         model.put("subsidiary", subsidiary);
-        return "subsidiary_form_view";
+        return "subsidiary/subsidiary_form_view";
     }
 
-    @RequestMapping(value = "subsidiary_form_create", method = RequestMethod.POST)
+    @RequestMapping(value = "/subsidiary_form_create", method = RequestMethod.POST)
     public String save(@Valid Subsidiary subsidiary, BindingResult bindingResult, Model model, SessionStatus status) {
         if (bindingResult.hasErrors()) {
-            return "subsidiary_form_view";
+            return "subsidiary/subsidiary_form_view";
         }
         subsidiaryService.save(subsidiary);
         status.setComplete();

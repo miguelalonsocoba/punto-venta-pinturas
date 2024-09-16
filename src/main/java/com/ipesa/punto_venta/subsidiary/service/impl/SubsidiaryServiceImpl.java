@@ -1,18 +1,17 @@
-package com.ipesa.punto_venta.subsidiary.services.impl;
+package com.ipesa.punto_venta.subsidiary.service.impl;
 
-import com.ipesa.punto_venta.subsidiary.domain.entities.Subsidiary;
+import com.ipesa.punto_venta.subsidiary.domain.entity.Subsidiary;
 import com.ipesa.punto_venta.subsidiary.domain.persistence.SubsidiaryDao;
-import com.ipesa.punto_venta.subsidiary.services.SubsidiaryService;
+import com.ipesa.punto_venta.subsidiary.service.ISubsidiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class SubsidiaryServiceImpl implements SubsidiaryService {
+public class SubsidiaryServiceImpl implements ISubsidiaryService {
 
-    private SubsidiaryDao subsidiaryDao;
+    private final SubsidiaryDao subsidiaryDao;
 
     @Autowired
     public SubsidiaryServiceImpl(SubsidiaryDao subsidiaryDao) {

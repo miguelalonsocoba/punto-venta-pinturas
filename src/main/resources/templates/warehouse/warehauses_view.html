@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Almacen</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Tienda de pinturas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/punto_venta/subsidiary/home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/punto_venta/warehouse/supplier/suppliers}">Proveedores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/punto_venta/warehouse/brand/brands}">Marcas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/punto_venta/warehouse/type_product/type_products}">Tipo de productos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main role="main">
+        <div class="container">
+            <h1 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">Productos existentes</h1>
+            <p>
+                <a href="*" class="btn btn-success btn-xs">Nuevo proucto</a>
+            </p>
+            <table class="table table-striped">
+                <thead class="bg-primary">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Proveedor</th>
+                        <th>Marca</th>
+                        <th>Tipo producto</th>
+                        <th>Existencias</th>
+                        <th>Cantidad mínima</th>
+                        <th>Fecha de creación</th>
+                        <th>Costo unitario</th>
+                        <th>Precio Unitario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product: ${products}">
+                        <td th:text="${product.getId()}"></td>
+                        <td th:text="${product.getName()}"></td>
+                        <td th:text="${product.getSupplier().getName()}"></td>
+                        <td th:text="${product.getBrand().getName()}"></td>
+                        <td th:text="${product.getProductType().getName()}"></td>
+                        <td th:text="${product.getStocks()}"></td>
+                        <td th:text="${product.getMinimumAmount()}"></td>
+                        <td th:text="${product.getDateOfCreation()}"></td>
+                        <td th:text="${product.getUnitCost()}"></td>
+                        <td th:text="${product.getUnitPrice()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
